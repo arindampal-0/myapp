@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 
 const fastify = Fastify({ logger: true });
+const PORT: number = Number(process.env.PORT) || 3000;
 
 fastify.get("/", async function (request, reply) {
     return { msg: "Hello, World!" };
@@ -13,7 +14,7 @@ fastify.get("/health", async function (request, reply) {
 async function main() {
     try {
         fastify.listen(
-            { port: 3000, host: "0.0.0.0" },
+            { port: PORT, host: "0.0.0.0" },
             function (err, address) {
                 if (err) {
                     fastify.log.error(err);
